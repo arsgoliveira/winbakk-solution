@@ -4,210 +4,324 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Winbakk | Retenção e Reativação com IA</title>
-    <meta
-      name="description"
-      content="A Winbakk transforma clientes inativos em receita recorrente para PMEs, automatizando reativação, recompra e pós-venda via WhatsApp e email."
-    />
+    <meta name="description" content="A Winbakk transforma clientes inativos em receita recorrente para PMEs, automatizando reativação, recompra e pós-venda via WhatsApp e email." />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=Outfit:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles-tech.css" />
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
+
+    <!-- ═══════════ HEADER ═══════════ -->
     <header class="site-header">
       <div class="container nav-wrap">
-        <a class="brand" href="#inicio">Winbakk</a>
-        <nav class="nav-links">
+        <a class="brand" href="#inicio">
+          <span class="brand-mark" aria-hidden="true">W</span>Winbakk
+        </a>
+        <nav class="topnav" id="topnav">
           <a href="#como-funciona">Como funciona</a>
-          <a href="#resultados">Resultados</a>
-          <a href="#time">Time</a>
+          <a href="#casos">Casos de Uso</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#recursos">Recursos</a>
         </nav>
-        <a class="btn btn-primary" href="#agendar">Agendar demo</a>
+        <a class="btn btn-primary nav-cta" href="#agendar">Acessar Plataforma</a>
+        <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
+      <nav class="mobile-nav" id="mobile-nav" aria-hidden="true">
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#casos">Casos de Uso</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#agendar" class="btn btn-primary">Acessar Plataforma</a>
+      </nav>
     </header>
 
     <main>
+      <!-- ═══════════ HERO ═══════════ -->
       <section id="inicio" class="hero section">
-        <div class="container hero-grid">
-          <div class="hero-content">
-            <p class="eyebrow" data-reveal>Retenção e reativação com IA para PMEs</p>
-            <h1 data-reveal>Vamos transformar clientes inativos em receita recorrente.</h1>
-            <p class="lead" data-reveal>
-              A Winbakk automatiza todo o pós-venda da sua empresa via WhatsApp e
-              email. Em menos de 20 minutos, você ativa uma operação autônoma de
-              relacionamento que recupera clientes e aumenta seu faturamento sem
-              depender de esforço manual.
-            </p>
-            <div class="cta-row" data-reveal>
-              <a class="btn btn-primary btn-lg" href="#agendar">Quero agendar uma call</a>
-              <a class="btn btn-ghost btn-lg" href="#como-funciona">Ver como funciona</a>
-            </div>
-            <p class="microcopy" data-reveal>
-              Sua empresa faturando mais com os clientes que você já tem.
-            </p>
+        <div class="container hero-inner">
+          <h1>
+            Vamos transformar <span class="g">clientes<br>inativos</span> em
+            <span class="g">receita recorrente.</span>
+          </h1>
+          <p class="lead">
+            Automatize a recuperação de clientes com nossa IA avançada<br>
+            e maximize o valor do seu pipeline.
+          </p>
+
+          <div class="metric-grid">
+            <article class="metric-card">
+              <span class="micon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+              </span>
+              <div><p class="mval">+3% a +10%</p><p class="mlabel">Aumento na Retenção</p></div>
+            </article>
+            <article class="metric-card">
+              <span class="micon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </span>
+              <div><p class="mval">&lt;20 min</p><p class="mlabel">Configuração Rápida</p></div>
+            </article>
+            <article class="metric-card">
+              <span class="micon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v2m0 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm0 4v2"/></svg>
+              </span>
+              <div><p class="mval">3.2x ROI</p><p class="mlabel">Retorno em Média</p></div>
+            </article>
           </div>
-          <aside class="hero-card" data-reveal>
-            <h2>O que você ganha com a Winbakk</h2>
-            <ul>
-              <li>Recuperação de <strong>3% a 10%</strong> de receita incremental/mês</li>
-              <li>Setup plug-and-play em <strong>menos de 20 min</strong></li>
-              <li>Execução autônoma: não é CRM para aprender, é operação feita por você</li>
-              <li>Canal principal no WhatsApp + apoio por email</li>
-            </ul>
-          </aside>
+
+          <div id="agendar" class="cta-row">
+            <a class="btn btn-glow" href="https://wa.me/5521984861273?text=Ol%C3%A1%2C%20quero%20agendar%20uma%20demo%20da%20Winbakk." target="_blank" rel="noopener noreferrer">
+              <svg class="bicon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.865 9.865 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Falar no WhatsApp
+            </a>
+            <a class="btn btn-glow btn-outline" href="https://calendly.com/winbakk/demo" target="_blank" rel="noopener noreferrer">
+              <svg class="bicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Agendar Demo (Calendly)
+            </a>
+          </div>
         </div>
       </section>
 
-      <section id="como-funciona" class="section section-muted">
+      <!-- ═══════════ COMO FUNCIONA ═══════════ -->
+      <section id="como-funciona" class="section steps-section">
         <div class="container">
-          <h2>Como funciona em 3 passos</h2>
-          <p class="section-intro">
-            Simples para operar, poderoso para crescer. A Winbakk roda o processo
-            completo de relacionamento para a sua base.
-          </p>
+          <h2 class="section-title">Como funciona em 3 passos</h2>
           <div class="steps-grid">
             <article class="step-card">
-              <span class="step-number">1</span>
-              <h3>Suba sua base de clientes</h3>
-              <p>
-                Envie CSV, planilha ou exportação do ERP com nome, WhatsApp e
-                histórico de compras.
-              </p>
+              <span class="step-num">1</span>
+              <span class="step-ico">
+                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="32" cy="14" rx="18" ry="6"/>
+                  <path d="M14 14v10c0 3.3 8 6 18 6s18-2.7 18-6V14"/>
+                  <path d="M14 24v10c0 3.3 8 6 18 6s18-2.7 18-6V24"/>
+                  <polyline points="32 40 32 54 40 48"/><polyline points="32 54 24 48"/>
+                </svg>
+              </span>
+              <h3>Conecte sua Base<br>de Dados</h3>
+              <p>Integre facilmente com seu CRM ou banco de dados para identificar clientes inativos.</p>
+              <span class="step-tag">API Segura</span>
             </article>
+            <span class="step-arrow" aria-hidden="true">›</span>
             <article class="step-card">
-              <span class="step-number">2</span>
-              <h3>IA analisa e segmenta automaticamente</h3>
-              <p>
-                Identificamos clientes inativos, em risco de abandono e no timing
-                ideal para recompra.
-              </p>
+              <span class="step-num">2</span>
+              <span class="step-ico">
+                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="32" cy="28" r="14"/>
+                  <path d="M24 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+                  <line x1="32" y1="20" x2="32" y2="36"/><line x1="24" y1="28" x2="40" y2="28"/>
+                  <circle cx="46" cy="46" r="7"/><line x1="50" y1="50" x2="56" y2="56"/>
+                  <polyline points="43 46 45 48 49 44"/>
+                </svg>
+              </span>
+              <h3>Ativação<br>Inteligente</h3>
+              <p>Nossa IA personaliza e envia mensagens automatizadas nos canais preferidos do cliente.</p>
+              <span class="step-tag">Multicanal</span>
             </article>
+            <span class="step-arrow" aria-hidden="true">›</span>
             <article class="step-card">
-              <span class="step-number">3</span>
-              <h3>Campanhas no timing certo</h3>
-              <p>
-                Disparamos mensagens personalizadas por WhatsApp e email, medindo
-                ROI e otimizando continuamente.
-              </p>
+              <span class="step-num">3</span>
+              <span class="step-ico">
+                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="8 48 20 36 28 44 42 26 56 18"/>
+                  <polyline points="48 18 56 18 56 26"/>
+                  <rect x="8" y="50" width="8" height="8" rx="1"/>
+                  <rect x="22" y="44" width="8" height="14" rx="1"/>
+                  <rect x="36" y="36" width="8" height="22" rx="1"/>
+                  <rect x="50" y="28" width="8" height="30" rx="1"/>
+                </svg>
+              </span>
+              <h3>Acompanhe a<br>Conversão</h3>
+              <p>Monitore os resultados em tempo real e veja sua receita recorrente crescer.</p>
+              <span class="step-tag">Dashboard Ao Vivo</span>
             </article>
           </div>
         </div>
       </section>
 
-      <section id="resultados" class="section">
+      <!-- ═══════════ PAINEL IA ═══════════ -->
+      <section class="section ai-section">
         <div class="container">
-          <h2>A matemática da retenção</h2>
-          <p class="section-intro">
-            Crescer na base atual custa menos e dá mais retorno do que depender só
-            de aquisição.
-          </p>
-          <div class="stats-grid">
-            <article class="stat-card">
-              <p class="stat-value">5–7x</p>
-              <p class="stat-label">mais caro adquirir novo cliente do que reter um existente</p>
-            </article>
-            <article class="stat-card">
-              <p class="stat-value">+25% a +95%</p>
-              <p class="stat-label">de aumento no lucro com apenas 5% de melhoria na retenção</p>
-            </article>
-            <article class="stat-card">
-              <p class="stat-value">60–70%</p>
-              <p class="stat-label">probabilidade de venda para cliente existente (vs 5–20% para novo)</p>
-            </article>
-            <article class="stat-card">
-              <p class="stat-value">+67%</p>
-              <p class="stat-label">gasto médio adicional de clientes recorrentes</p>
-            </article>
+          <div class="ai-stage" aria-label="Diagrama Winbakk AI">
+
+            <!-- SVG: wires + dots (absoluto, cobre tudo) -->
+            <svg class="ai-wires-svg" viewBox="0 0 1000 300" xmlns="http://www.w3.org/2000/svg"
+                 preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <marker id="ar" markerWidth="9" markerHeight="7" refX="8.5" refY="3.5" orient="auto">
+                  <path d="M0,0 L9,3.5 L0,7 Z" fill="rgba(0,220,255,0.9)"/>
+                </marker>
+              </defs>
+              <!-- left top wire (angled down to center) -->
+              <line x1="90" y1="65"  x2="390" y2="130" stroke="rgba(0,200,255,0.45)" stroke-width="1.6"/>
+              <circle cx="190" cy="88"  r="5" fill="rgba(0,200,255,0.8)"/>
+              <circle cx="290" cy="109" r="5" fill="rgba(0,200,255,0.6)"/>
+              <!-- left mid wire (straight, purple) -->
+              <line x1="90" y1="150" x2="390" y2="150" stroke="rgba(140,50,255,0.85)" stroke-width="1.8"/>
+              <circle cx="190" cy="150" r="5" fill="rgba(160,70,255,1)"/>
+              <circle cx="290" cy="150" r="5" fill="rgba(160,70,255,1)"/>
+              <!-- left bot wire (angled up to center) -->
+              <line x1="90" y1="235" x2="390" y2="170" stroke="rgba(0,200,255,0.45)" stroke-width="1.6"/>
+              <circle cx="190" cy="212" r="5" fill="rgba(0,200,255,0.8)"/>
+              <circle cx="290" cy="191" r="5" fill="rgba(0,200,255,0.6)"/>
+              <!-- right top wire (to Recuperação) -->
+              <path d="M 610 125 C 680 125 700 78 770 78"
+                    stroke="rgba(0,220,255,0.85)" stroke-width="1.7" fill="none" marker-end="url(#ar)"/>
+              <circle cx="678" cy="104" r="5" fill="rgba(0,220,255,0.85)"/>
+              <!-- right bot wire (to Receita) -->
+              <path d="M 610 175 C 680 175 700 222 770 222"
+                    stroke="rgba(0,220,255,0.85)" stroke-width="1.7" fill="none" marker-end="url(#ar)"/>
+              <circle cx="678" cy="196" r="5" fill="rgba(0,220,255,0.85)"/>
+            </svg>
+
+            <!-- col 1: input icons -->
+            <div class="ai-col-left">
+              <div class="ai-inode">
+                <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                  <ellipse cx="14" cy="7" rx="9" ry="3.5"/>
+                  <path d="M5 7v5c0 1.93 4.48 3.5 9 3.5S23 13.93 23 12V7"/>
+                </svg>
+              </div>
+              <div class="ai-inode">
+                <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                  <ellipse cx="14" cy="6" rx="9" ry="3"/>
+                  <path d="M5 6v4c0 1.66 4.03 3 9 3s9-1.34 9-3V6"/>
+                  <ellipse cx="14" cy="17" rx="9" ry="3"/>
+                  <path d="M5 17v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+                </svg>
+              </div>
+              <div class="ai-inode">
+                <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                  <path d="M17 3H7a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9z"/>
+                  <polyline points="17 3 17 9 23 9"/>
+                  <line x1="9" y1="15" x2="19" y2="15"/>
+                  <polyline points="9 19 12 21 9 23"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- col 2: pedestal -->
+            <div class="ai-col-center">
+              <div class="ai-pedestal">
+                <div class="ai-sphere">
+                  <svg class="brain-svg" viewBox="0 0 64 64" fill="none" stroke="currentColor"
+                       stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="32" cy="32" r="22" stroke="rgba(255,255,255,0.2)" stroke-dasharray="2 3"/>
+                    <path d="M20 28c0-6.6 5.4-12 12-12s12 5.4 12 12c2.5 1 4 3.5 4 6 0 4-3.1 7-7 7H23c-3.9 0-7-3-7-7 0-2.5 1.5-5 4-6z"/>
+                    <line x1="32" y1="16" x2="32" y2="40"/>
+                    <line x1="20" y1="28" x2="44" y2="28"/>
+                    <line x1="20" y1="35" x2="44" y2="35"/>
+                    <line x1="26" y1="41" x2="26" y2="48"/>
+                    <line x1="38" y1="41" x2="38" y2="48"/>
+                    <line x1="26" y1="48" x2="38" y2="48"/>
+                  </svg>
+                </div>
+                <div class="ped-neck"></div>
+                <div class="ped-disc"></div>
+                <div class="ped-glow"></div>
+              </div>
+              <div class="ai-badge">Winbakk AI</div>
+            </div>
+
+            <!-- col 3: output nodes -->
+            <div class="ai-col-right">
+              <div class="ai-onode">
+                <div class="out-ico">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                       stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                  </svg>
+                </div>
+                <span>Recuperação</span>
+              </div>
+              <div class="ai-onode">
+                <div class="out-ico">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                       stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 6v2m0 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zm0 5v3"/>
+                  </svg>
+                </div>
+                <span>Receita Recorrente</span>
+              </div>
+            </div>
+
           </div>
-          <p class="source-note">
-            Fontes de referência: Bain &amp; Company, Harvard Business Review e Invesp.
-          </p>
         </div>
       </section>
 
-      <section id="segmento" class="section section-muted">
-        <div class="container niche">
-          <h2>Foco inicial: farmácias de manipulação</h2>
-          <p>
-            Começamos por um nicho com alta recorrência e forte potencial de
-            recompra. A metodologia é desenhada para evoluir depois para outros
-            segmentos B2C com perfil semelhante.
-          </p>
-        </div>
-      </section>
-
-      <section id="agendar" class="section cta-section">
-        <div class="container cta-panel">
-          <div>
-            <h2>Quer ver a Winbakk em ação?</h2>
-            <p>
-              Agende uma conversa rápida para avaliarmos sua base e estimarmos o
-              potencial de receita incremental do seu negócio.
-            </p>
-          </div>
-          <div class="cta-buttons">
-            <a
-              class="btn btn-primary btn-lg"
-              href="https://wa.me/5521984861273?text=Ol%C3%A1%2C%20quero%20agendar%20uma%20demo%20da%20Winbakk."
-              target="_blank"
-              rel="noopener noreferrer"
-              >Falar no WhatsApp</a
-            >
-            <a
-              class="btn btn-ghost btn-lg"
-              href="https://calendly.com/winbakk/demo"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Agendar pelo Calendly</a
-            >
-          </div>
-        </div>
-      </section>
-
-      <section id="time" class="section">
+      <!-- ═══════════ RESULTADOS ═══════════ -->
+      <section id="casos" class="section">
         <div class="container">
-          <h2>Time</h2>
+          <h2 class="section-title">Resultados em Destaque</h2>
+          <div class="highlight-grid">
+            <article class="highlight-card">
+              <div class="hicon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+              </div>
+              <div><p class="hval">R$ 500k+</p><p class="hlabel">Receita recuperada no último trimestre para clientes B2B SaaS.</p></div>
+            </article>
+            <article class="highlight-card">
+              <div class="hicon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <div><p class="hval">85%+</p><p class="hlabel">Taxa de engajamento média em campanhas de reativação.</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════ TIME ═══════════ -->
+      <section id="sobre" class="section">
+        <div class="container">
+          <h2 class="section-title">Nossa Equipe de Especialistas</h2>
           <div class="team-grid">
             <article class="team-card">
-              <h3>Bruno Oliveira</h3>
-              <p class="role">CEO</p>
-              <p>
-                Lidera estratégia de produto e crescimento com foco em retenção,
-                operação e geração de receita recorrente para PMEs.
-              </p>
+              <img class="avatar-photo" src="./assets/images/bruno-oliveira.jpg" alt="Bruno Oliveira" />
+              <div class="team-info">
+                <h3>Bruno Oliveira</h3>
+                <p class="team-role">CEO</p>
+                <p class="team-bio">Lidera estratégia de produto e crescimento com foco em retenção e receita recorrente para PMEs.</p>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="team-social" aria-label="LinkedIn Bruno">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+              </div>
             </article>
             <article class="team-card">
-              <h3>Mat Moura</h3>
-              <p class="role">CTO</p>
-              <p>
-                Responsável pela arquitetura tecnológica e pela camada de IA que
-                automatiza decisões de segmentação, timing e personalização.
-              </p>
+              <img class="avatar-photo" src="./assets/images/mat-moura.jpg" alt="Mat Moura" />
+              <div class="team-info">
+                <h3>Mat Moura</h3>
+                <p class="team-role">CTO &amp; Co-Fundador</p>
+                <p class="team-bio">Responsável pela arquitetura de IA que automatiza segmentação, timing e personalização.</p>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="team-social" aria-label="LinkedIn Mat">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+              </div>
             </article>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-wrap">
-        <p>© <span id="year"></span> Winbakk. Todos os direitos reservados.</p>
-        <a class="btn btn-primary" href="#agendar">Bookar uma call</a>
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer id="recursos" class="site-footer">
+      <div class="container footer-inner">
+        <a class="brand" href="#inicio">
+          <span class="brand-mark" aria-hidden="true">W</span>Winbakk
+        </a>
+        <nav class="footer-links">
+          <a href="#">Privacidade</a>
+          <a href="#">Termos</a>
+          <a href="#">Blog</a>
+        </nav>
+        <p class="footer-copy">contact@winbakk.com &nbsp;·&nbsp; © <span id="year"></span> Winbakk</p>
       </div>
     </footer>
-
-    <a
-      class="floating-whatsapp"
-      href="https://wa.me/5521984861273?text=Ol%C3%A1%2C%20quero%20agendar%20uma%20demo%20da%20Winbakk."
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Conversar no WhatsApp"
-      >WhatsApp</a
-    >
 
     <script src="./script.js"></script>
   </body>
