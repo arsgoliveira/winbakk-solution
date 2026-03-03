@@ -1,0 +1,175 @@
+{
+  "designSystem": {
+    "name": "Winbakk",
+    "theme": "dark-glassmorphism",
+    "colors": {
+      "primary": "#00F0FF",
+      "primaryHover": "#33F3FF",
+      "background": "#0A0E17",
+      "surface": "rgba(255, 255, 255, 0.03)",
+      "surfaceHighlight": "rgba(255, 255, 255, 0.08)",
+      "text": {
+        "primary": "#FFFFFF",
+        "secondary": "#A1B0CC",
+        "inverse": "#000000"
+      },
+      "borders": {
+        "default": "rgba(255, 255, 255, 0.1)",
+        "highlight": "rgba(0, 240, 255, 0.4)"
+      },
+      "gradients": {
+        "backgroundGlow": "radial-gradient(circle at 50% 50%, rgba(0,240,255,0.1) 0%, rgba(10,14,23,0) 50%)",
+        "purpleGlow": "radial-gradient(circle at 10% 90%, rgba(120,0,255,0.1) 0%, rgba(10,14,23,0) 40%)"
+      }
+    },
+    "typography": {
+      "fontFamily": "'Inter', system-ui, -apple-system, sans-serif",
+      "sizes": {
+        "h1": "48px",
+        "h2": "32px",
+        "h3": "24px",
+        "h4": "20px",
+        "body": "16px",
+        "small": "14px",
+        "tiny": "12px"
+      },
+      "weights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700
+      },
+      "lineHeights": {
+        "heading": 1.2,
+        "body": 1.5
+      },
+      "letterSpacing": {
+        "default": "normal",
+        "heading": "-0.02em"
+      }
+    },
+    "spacing": {
+      "xs": "4px",
+      "sm": "8px",
+      "md": "16px",
+      "lg": "24px",
+      "xl": "32px",
+      "xxl": "48px",
+      "section": "80px",
+      "containerPadding": "24px"
+    },
+    "borderRadius": {
+      "sm": "8px",
+      "md": "16px",
+      "lg": "24px",
+      "pill": "9999px"
+    },
+    "components": {
+      "buttons": {
+        "outlined": {
+          "backgroundColor": "transparent",
+          "border": "1px solid #00F0FF",
+          "color": "#00F0FF",
+          "borderRadius": "9999px",
+          "padding": "12px 24px",
+          "boxShadow": "0 0 15px rgba(0, 240, 255, 0.2)",
+          "fontWeight": 600,
+          "fontSize": "16px"
+        },
+        "filled": {
+          "backgroundColor": "#00F0FF",
+          "color": "#0A0E17",
+          "border": "none",
+          "borderRadius": "9999px",
+          "padding": "12px 24px",
+          "fontWeight": 600,
+          "fontSize": "16px"
+        },
+        "pillTags": {
+          "backgroundColor": "rgba(0, 240, 255, 0.1)",
+          "color": "#00F0FF",
+          "border": "1px solid rgba(0, 240, 255, 0.2)",
+          "borderRadius": "9999px",
+          "padding": "4px 12px",
+          "fontSize": "12px"
+        }
+      },
+      "cards": {
+        "default": {
+          "background": "rgba(255, 255, 255, 0.03)",
+          "backdropFilter": "blur(12px)",
+          "border": "1px solid rgba(255, 255, 255, 0.1)",
+          "borderRadius": "16px",
+          "padding": "24px",
+          "boxShadow": "0 4px 30px rgba(0, 0, 0, 0.1)"
+        },
+        "highlighted": {
+          "background": "linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)",
+          "backdropFilter": "blur(12px)",
+          "border": "1px solid rgba(0, 240, 255, 0.3)",
+          "borderRadius": "16px",
+          "padding": "24px",
+          "boxShadow": "0 0 20px rgba(0, 240, 255, 0.1)"
+        },
+        "stepCard": {
+          "background": "rgba(255, 255, 255, 0.02)",
+          "border": "1px solid rgba(255, 255, 255, 0.08)",
+          "borderRadius": "24px",
+          "padding": "32px",
+          "display": "flex",
+          "flexDirection": "column",
+          "gap": "16px"
+        }
+      },
+      "icons": {
+        "wrapper": {
+          "display": "flex",
+          "alignItems": "center",
+          "justifyContent": "center",
+          "width": "48px",
+          "height": "48px",
+          "background": "rgba(0, 240, 255, 0.05)",
+          "border": "1px solid rgba(0, 240, 255, 0.2)",
+          "borderRadius": "12px",
+          "color": "#00F0FF"
+        }
+      },
+      "header": {
+        "background": "transparent",
+        "padding": "24px 0",
+        "display": "flex",
+        "justifyContent": "space-between",
+        "alignItems": "center"
+      },
+      "footer": {
+        "padding": "48px 0",
+        "borderTop": "1px solid rgba(255, 255, 255, 0.1)",
+        "color": "#A1B0CC",
+        "fontSize": "14px"
+      }
+    },
+    "layout": {
+      "maxWidth": "1200px",
+      "gridColumns": 12,
+      "gap": "24px",
+      "sections": {
+        "hero": {
+          "textAlign": "center",
+          "paddingTop": "80px",
+          "paddingBottom": "80px",
+          "gap": "32px"
+        },
+        "features": {
+          "display": "grid",
+          "gridTemplateColumns": "repeat(auto-fit, minmax(300px, 1fr))",
+          "gap": "24px"
+        },
+        "team": {
+          "display": "grid",
+          "gridTemplateColumns": "repeat(4, 1fr)",
+          "gap": "24px"
+        }
+      }
+    }
+  }
+}

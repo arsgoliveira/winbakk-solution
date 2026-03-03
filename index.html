@@ -1,328 +1,1151 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Winbakk | Retenção e Reativação com IA</title>
-    <meta name="description" content="A Winbakk transforma clientes inativos em receita recorrente para PMEs, automatizando reativação, recompra e pós-venda via WhatsApp e email." />
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles-tech.css" />
-  </head>
-  <body>
-    <div class="grain" aria-hidden="true"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Winbakk – Transforme Clientes Inativos em Receita Recorrente</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ─────────────────────────────────────────
+       RESET & BASE
+    ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <!-- ═══════════ HEADER ═══════════ -->
-    <header class="site-header">
-      <div class="container nav-wrap">
-        <a class="brand" href="#inicio">
-          <span class="brand-mark" aria-hidden="true">W</span>Winbakk
+    :root {
+      --bg-primary:       #050A0F;
+      --bg-purple:        #1A0B2E;
+      --bg-teal:          #0B1A1A;
+      --teal:             #00F2FF;
+      --green:            #4DEBC1;
+      --purple:           #8A2BE2;
+      --white:            #FFFFFF;
+      --body-text:        #A0AEC0;
+      --card-bg:          rgba(255,255,255,0.05);
+      --card-border:      rgba(255,255,255,0.10);
+      --glass-blur:       12px;
+      --radius-card:      16px;
+      --radius-btn:       24px;
+      --radius-sm:        8px;
+      --glow-teal:        0 0 18px rgba(0,242,255,0.45);
+      --glow-purple:      0 0 24px rgba(138,43,226,0.35);
+      --transition:       0.3s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Background ambient glow */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -20%;
+      left: -10%;
+      width: 55%;
+      height: 55%;
+      background: radial-gradient(ellipse, rgba(138,43,226,0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -15%;
+      right: -10%;
+      width: 50%;
+      height: 50%;
+      background: radial-gradient(ellipse, rgba(0,242,255,0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─────────────────────────────────────────
+       UTILITIES
+    ───────────────────────────────────────── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .glass-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      border-radius: var(--radius-card);
+    }
+
+    .teal { color: var(--teal); }
+    .green { color: var(--green); }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      background: rgba(0,242,255,0.08);
+      border: 1px solid rgba(0,242,255,0.25);
+      border-radius: 20px;
+      padding: 4px 14px;
+      margin-bottom: 16px;
+    }
+
+    h2.section-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    p.section-sub {
+      font-size: 16px;
+      color: var(--body-text);
+      max-width: 560px;
+      margin: 0 auto 52px;
+    }
+
+    section { padding: 100px 0; }
+
+    /* ─────────────────────────────────────────
+       HEADER / NAV
+    ───────────────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(5,10,15,0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, var(--teal), var(--purple));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: #fff;
+      box-shadow: var(--glow-teal);
+    }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+    .logo-text span { color: var(--teal); }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 36px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--body-text);
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .btn-nav {
+      background: var(--teal);
+      color: #050A0F;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 10px 22px;
+      border-radius: var(--radius-btn);
+      text-decoration: none;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .btn-nav:hover {
+      box-shadow: var(--glow-teal);
+      transform: translateY(-1px);
+    }
+
+    /* ─────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────── */
+    .hero {
+      padding: 80px 0 100px;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .hero-left { text-align: left; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--teal);
+      background: rgba(0,242,255,0.07);
+      border: 1px solid rgba(0,242,255,0.2);
+      border-radius: 20px;
+      padding: 5px 14px;
+      margin-bottom: 24px;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 8px var(--teal);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--teal);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      color: var(--body-text);
+      line-height: 1.65;
+      margin-bottom: 40px;
+      max-width: 460px;
+    }
+
+    /* Stats row */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .stat-card .stat-icon {
+      font-size: 20px;
+      margin-bottom: 2px;
+    }
+
+    .stat-value {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--teal);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--body-text);
+      font-weight: 500;
+    }
+
+    /* Buttons */
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #25D366;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: var(--radius-btn);
+      text-decoration: none;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .btn-whatsapp:hover {
+      box-shadow: 0 0 20px rgba(37,211,102,0.4);
+      transform: translateY(-2px);
+    }
+
+    .btn-demo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--white);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: var(--radius-btn);
+      border: 1px solid rgba(255,255,255,0.2);
+      text-decoration: none;
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+    }
+    .btn-demo:hover {
+      border-color: var(--teal);
+      box-shadow: var(--glow-teal);
+      transform: translateY(-2px);
+    }
+
+    /* ─────────────────────────────────────────
+       HERO RIGHT — AI VISUAL
+    ───────────────────────────────────────── */
+    .hero-right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .ai-visual {
+      position: relative;
+      width: 420px;
+      height: 420px;
+    }
+
+    /* Orbit ring */
+    .orbit-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1px dashed rgba(0,242,255,0.2);
+      animation: spin 18s linear infinite;
+    }
+    .orbit-ring-2 {
+      inset: 30px;
+      border-color: rgba(138,43,226,0.2);
+      animation: spin 28s linear infinite reverse;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* Center hub */
+    .ai-hub {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle, rgba(138,43,226,0.3), rgba(0,242,255,0.15));
+      border: 1px solid rgba(0,242,255,0.3);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 0 40px rgba(0,242,255,0.2), 0 0 80px rgba(138,43,226,0.15);
+      z-index: 5;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(-50%,-50%) translateY(0); }
+      50%       { transform: translate(-50%,-50%) translateY(-10px); }
+    }
+
+    .ai-hub-icon {
+      font-size: 48px;
+      line-height: 1;
+    }
+
+    .ai-hub-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 0.05em;
+    }
+
+    /* Satellite cards */
+    .ai-satellite {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      min-width: 160px;
+    }
+
+    .sat-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: rgba(0,242,255,0.1);
+      border: 1px solid rgba(0,242,255,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .sat-text { display: flex; flex-direction: column; }
+    .sat-title { font-size: 13px; font-weight: 700; color: var(--white); }
+    .sat-sub   { font-size: 11px; color: var(--body-text); }
+
+    .sat-top    { top: 10px;   right: -30px; }
+    .sat-bottom { bottom: 10px; right: -30px; }
+
+    /* Connector lines */
+    .ai-visual svg.connectors {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    /* Floating data nodes */
+    .data-node {
+      position: absolute;
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      border: 1px solid rgba(0,242,255,0.2);
+      background: rgba(0,242,255,0.06);
+    }
+    .node-1 { top: 20px;  left: 20px;  animation: float 5s ease-in-out infinite; }
+    .node-2 { top: 20px;  left: 90px;  animation: float 6s ease-in-out infinite 1s; }
+    .node-3 { bottom: 20px; left: 20px; animation: float 5.5s ease-in-out infinite 0.5s; }
+
+    /* ─────────────────────────────────────────
+       PROCESS SECTION
+    ───────────────────────────────────────── */
+    .process { text-align: center; }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      position: relative;
+    }
+
+    /* Arrow between cards */
+    .process-grid::before,
+    .process-grid::after {
+      content: '→';
+      position: absolute;
+      top: 50%;
+      font-size: 24px;
+      color: var(--teal);
+      opacity: 0.5;
+      transform: translateY(-50%);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .process-grid::before { left: calc(33.33% - 14px); }
+    .process-grid::after  { left: calc(66.66% - 14px); }
+
+    .process-card {
+      padding: 32px 28px;
+      text-align: left;
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: default;
+    }
+    .process-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,242,255,0.08);
+    }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--teal), var(--purple));
+      font-size: 16px;
+      font-weight: 800;
+      color: #050A0F;
+      margin-bottom: 20px;
+      box-shadow: var(--glow-teal);
+    }
+
+    .process-icon {
+      font-size: 38px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .process-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .process-card p {
+      font-size: 15px;
+      color: var(--body-text);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .micro-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--teal);
+      background: rgba(0,242,255,0.07);
+      border: 1px solid rgba(0,242,255,0.2);
+      border-radius: 6px;
+      padding: 4px 10px;
+    }
+    .micro-tag::before {
+      content: '●';
+      font-size: 8px;
+      opacity: 0.8;
+    }
+
+    /* ─────────────────────────────────────────
+       RESULTS SECTION
+    ───────────────────────────────────────── */
+    .results {
+      background: radial-gradient(ellipse at center, rgba(26,11,46,0.6) 0%, transparent 70%);
+      text-align: center;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .result-card {
+      padding: 40px 36px;
+      text-align: left;
+      transition: transform var(--transition);
+    }
+    .result-card:hover { transform: translateY(-4px); }
+
+    .result-icon-wrap {
+      width: 52px; height: 52px;
+      border-radius: var(--radius-sm);
+      background: rgba(0,242,255,0.08);
+      border: 1px solid rgba(0,242,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .result-value {
+      font-size: 52px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .result-card:nth-child(1) .result-value { color: var(--teal); }
+    .result-card:nth-child(2) .result-value { color: var(--green); }
+
+    .result-label {
+      font-size: 16px;
+      color: var(--body-text);
+      line-height: 1.5;
+      max-width: 260px;
+    }
+
+    /* Mini bar chart */
+    .mini-chart {
+      margin-top: 28px;
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 56px;
+    }
+
+    .bar {
+      flex: 1;
+      border-radius: 4px 4px 0 0;
+      background: linear-gradient(to top, var(--teal), rgba(0,242,255,0.3));
+      opacity: 0.7;
+    }
+
+    .result-card:nth-child(2) .bar {
+      background: linear-gradient(to top, var(--green), rgba(77,235,193,0.3));
+    }
+
+    /* ─────────────────────────────────────────
+       TEAM SECTION
+    ───────────────────────────────────────── */
+    .team { text-align: center; }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .team-card {
+      padding: 32px 20px;
+      text-align: center;
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: default;
+    }
+    .team-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    }
+
+    .avatar {
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2a2a3e, #1a1a2e);
+      border: 2px solid var(--card-border);
+      margin: 0 auto 18px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      color: var(--body-text);
+      transition: border-color var(--transition);
+    }
+    .team-card:hover .avatar { border-color: rgba(0,242,255,0.4); }
+
+    .team-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .team-role {
+      font-size: 13px;
+      color: var(--body-text);
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    .linkedin-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--teal);
+      text-decoration: none;
+      border: 1px solid rgba(0,242,255,0.2);
+      border-radius: 6px;
+      padding: 5px 12px;
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+    .linkedin-btn:hover {
+      background: rgba(0,242,255,0.06);
+      box-shadow: var(--glow-teal);
+    }
+
+    /* ─────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 48px 0;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--body-text);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--teal); }
+
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 16px;
+      color: var(--body-text);
+      transition: border-color var(--transition), color var(--transition), box-shadow var(--transition);
+    }
+    .social-icon:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+      box-shadow: var(--glow-teal);
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(160,174,192,0.5);
+    }
+
+    .footer-contact {
+      font-size: 13px;
+      color: var(--body-text);
+    }
+    .footer-contact a {
+      color: var(--teal);
+      text-decoration: none;
+    }
+
+    /* ─────────────────────────────────────────
+       SCROLL REVEAL ANIMATION
+    ───────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner    { grid-template-columns: 1fr; text-align: center; }
+      .hero-left     { text-align: center; }
+      .hero-sub      { margin: 0 auto 40px; }
+      .hero-right    { display: none; }
+      .hero-buttons  { justify-content: center; }
+      .hero-stats    { grid-template-columns: repeat(3,1fr); }
+      .process-grid  { grid-template-columns: 1fr; }
+      .process-grid::before,
+      .process-grid::after { display: none; }
+      .results-grid  { grid-template-columns: 1fr; }
+      .team-grid     { grid-template-columns: 1fr 1fr; }
+      .footer-inner  { grid-template-columns: 1fr; text-align: center; }
+      .footer-right  { align-items: center; }
+      .nav-links     { display: none; }
+    }
+
+    @media (max-width: 540px) {
+      .hero h1       { font-size: 34px; }
+      .hero-stats    { grid-template-columns: 1fr; }
+      .team-grid     { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════ HEADER ══════════ -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="nav-logo">
+          <div class="logo-icon">W</div>
+          <span class="logo-text">Win<span>bakk</span></span>
         </a>
-        <nav class="topnav" id="topnav">
-          <a href="#como-funciona">Como funciona</a>
-          <a href="#casos">Casos de Uso</a>
-          <a href="#sobre">Sobre</a>
-          <a href="#recursos">Recursos</a>
-        </nav>
-        <a class="btn btn-primary nav-cta" href="#agendar">Acessar Plataforma</a>
-        <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-      <nav class="mobile-nav" id="mobile-nav" aria-hidden="true">
-        <a href="#como-funciona">Como funciona</a>
-        <a href="#casos">Casos de Uso</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#recursos">Recursos</a>
-        <a href="#agendar" class="btn btn-primary">Acessar Plataforma</a>
-      </nav>
-    </header>
 
-    <main>
-      <!-- ═══════════ HERO ═══════════ -->
-      <section id="inicio" class="hero section">
-        <div class="container hero-inner">
+        <ul class="nav-links">
+          <li><a href="#process">Como funciona</a></li>
+          <li><a href="#results">Casos de Uso</a></li>
+          <li><a href="#team">Sobre</a></li>
+          <li><a href="#footer">Recursos</a></li>
+        </ul>
+
+        <a href="#hero" class="btn-nav">Acessar Plataforma</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ══════════ HERO ══════════ -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-inner">
+
+        <div class="hero-left">
+          <div class="hero-badge">IA de Recuperação de Clientes</div>
+
           <h1>
-            Vamos transformar <span class="g">clientes<br>inativos</span> em
-            <span class="g">receita recorrente.</span>
+            Vamos transformar <em>clientes inativos</em> em <em>receita recorrente.</em>
           </h1>
-          <p class="lead">
-            Automatize a recuperação de clientes com nossa IA avançada<br>
+
+          <p class="hero-sub">
+            Automatize a recuperação de clientes com nossa IA avançada
             e maximize o valor do seu pipeline.
           </p>
 
-          <div class="metric-grid">
-            <article class="metric-card">
-              <span class="micon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-              </span>
-              <div><p class="mval">+3% a +10%</p><p class="mlabel">Aumento na Retenção</p></div>
-            </article>
-            <article class="metric-card">
-              <span class="micon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              </span>
-              <div><p class="mval">&lt;20 min</p><p class="mlabel">Configuração Rápida</p></div>
-            </article>
-            <article class="metric-card">
-              <span class="micon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v2m0 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm0 4v2"/></svg>
-              </span>
-              <div><p class="mval">3.2x ROI</p><p class="mlabel">Retorno em Média</p></div>
-            </article>
+          <div class="hero-stats">
+            <div class="stat-card glass-card reveal reveal-delay-1">
+              <span class="stat-icon">📈</span>
+              <span class="stat-value">+3% a +10%</span>
+              <span class="stat-label">Aumento na Retenção</span>
+            </div>
+            <div class="stat-card glass-card reveal reveal-delay-2">
+              <span class="stat-icon">⏱️</span>
+              <span class="stat-value">&lt;20 min</span>
+              <span class="stat-label">Configuração Rápida</span>
+            </div>
+            <div class="stat-card glass-card reveal reveal-delay-3">
+              <span class="stat-icon">💰</span>
+              <span class="stat-value">3.2x ROI</span>
+              <span class="stat-label">Retorno em Média</span>
+            </div>
           </div>
 
-          <div id="agendar" class="cta-row">
-            <a class="btn btn-glow" href="https://wa.me/5521984861273?text=Ol%C3%A1%2C%20quero%20agendar%20uma%20demo%20da%20Winbakk." target="_blank" rel="noopener noreferrer">
-              <svg class="bicon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.865 9.865 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <div class="hero-buttons">
+            <a href="https://wa.me/" class="btn-whatsapp" target="_blank">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.549 4.12 1.515 5.858L.057 23.5l5.797-1.44A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.037-1.385l-.36-.215-3.44.854.882-3.338-.235-.375A9.818 9.818 0 0112 2.182c5.429 0 9.818 4.389 9.818 9.818 0 5.43-4.389 9.818-9.818 9.818z"/>
+              </svg>
               Falar no WhatsApp
             </a>
-            <a class="btn btn-glow btn-outline" href="https://calendly.com/winbakk/demo" target="_blank" rel="noopener noreferrer">
-              <svg class="bicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <a href="#" class="btn-demo">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
               Agendar Demo (Calendly)
             </a>
           </div>
         </div>
-      </section>
 
-      <!-- ═══════════ COMO FUNCIONA ═══════════ -->
-      <section id="como-funciona" class="section steps-section">
-        <div class="container">
-          <h2 class="section-title">Como funciona em 3 passos</h2>
-          <div class="steps-grid">
-            <article class="step-card">
-              <span class="step-num">1</span>
-              <span class="step-ico">
-                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="32" cy="14" rx="18" ry="6"/>
-                  <path d="M14 14v10c0 3.3 8 6 18 6s18-2.7 18-6V14"/>
-                  <path d="M14 24v10c0 3.3 8 6 18 6s18-2.7 18-6V24"/>
-                  <polyline points="32 40 32 54 40 48"/><polyline points="32 54 24 48"/>
-                </svg>
-              </span>
-              <h3>Conecte sua Base<br>de Dados</h3>
-              <p>Integre facilmente com seu CRM ou banco de dados para identificar clientes inativos.</p>
-              <span class="step-tag">API Segura</span>
-            </article>
-            <span class="step-arrow" aria-hidden="true">›</span>
-            <article class="step-card">
-              <span class="step-num">2</span>
-              <span class="step-ico">
-                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="32" cy="28" r="14"/>
-                  <path d="M24 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
-                  <line x1="32" y1="20" x2="32" y2="36"/><line x1="24" y1="28" x2="40" y2="28"/>
-                  <circle cx="46" cy="46" r="7"/><line x1="50" y1="50" x2="56" y2="56"/>
-                  <polyline points="43 46 45 48 49 44"/>
-                </svg>
-              </span>
-              <h3>Ativação<br>Inteligente</h3>
-              <p>Nossa IA personaliza e envia mensagens automatizadas nos canais preferidos do cliente.</p>
-              <span class="step-tag">Multicanal</span>
-            </article>
-            <span class="step-arrow" aria-hidden="true">›</span>
-            <article class="step-card">
-              <span class="step-num">3</span>
-              <span class="step-ico">
-                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="8 48 20 36 28 44 42 26 56 18"/>
-                  <polyline points="48 18 56 18 56 26"/>
-                  <rect x="8" y="50" width="8" height="8" rx="1"/>
-                  <rect x="22" y="44" width="8" height="14" rx="1"/>
-                  <rect x="36" y="36" width="8" height="22" rx="1"/>
-                  <rect x="50" y="28" width="8" height="30" rx="1"/>
-                </svg>
-              </span>
-              <h3>Acompanhe a<br>Conversão</h3>
-              <p>Monitore os resultados em tempo real e veja sua receita recorrente crescer.</p>
-              <span class="step-tag">Dashboard Ao Vivo</span>
-            </article>
-          </div>
-        </div>
-      </section>
+        <!-- AI Visual -->
+        <div class="hero-right">
+          <div class="ai-visual">
+            <!-- Orbit rings -->
+            <div class="orbit-ring"></div>
+            <div class="orbit-ring orbit-ring-2"></div>
 
-      <!-- ═══════════ PAINEL IA ═══════════ -->
-      <section class="section ai-section">
-        <div class="container">
-          <div class="ai-stage" aria-label="Diagrama Winbakk AI">
+            <!-- Data nodes -->
+            <div class="data-node node-1">🗄️</div>
+            <div class="data-node node-2">📊</div>
+            <div class="data-node node-3">👥</div>
 
-            <!-- SVG: wires + dots (absoluto, cobre tudo) -->
-            <svg class="ai-wires-svg" viewBox="0 0 1000 300" xmlns="http://www.w3.org/2000/svg"
-                 preserveAspectRatio="none" aria-hidden="true">
+            <!-- SVG connectors -->
+            <svg class="connectors" viewBox="0 0 420 420">
               <defs>
-                <marker id="ar" markerWidth="9" markerHeight="7" refX="8.5" refY="3.5" orient="auto">
-                  <path d="M0,0 L9,3.5 L0,7 Z" fill="rgba(0,220,255,0.9)"/>
-                </marker>
+                <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color:#00F2FF;stop-opacity:0.6"/>
+                  <stop offset="100%" style="stop-color:#8A2BE2;stop-opacity:0.4"/>
+                </linearGradient>
               </defs>
-              <!-- left top wire (angled down to center) -->
-              <line x1="90" y1="65"  x2="390" y2="130" stroke="rgba(0,200,255,0.45)" stroke-width="1.6"/>
-              <circle cx="190" cy="88"  r="5" fill="rgba(0,200,255,0.8)"/>
-              <circle cx="290" cy="109" r="5" fill="rgba(0,200,255,0.6)"/>
-              <!-- left mid wire (straight, purple) -->
-              <line x1="90" y1="150" x2="390" y2="150" stroke="rgba(140,50,255,0.85)" stroke-width="1.8"/>
-              <circle cx="190" cy="150" r="5" fill="rgba(160,70,255,1)"/>
-              <circle cx="290" cy="150" r="5" fill="rgba(160,70,255,1)"/>
-              <!-- left bot wire (angled up to center) -->
-              <line x1="90" y1="235" x2="390" y2="170" stroke="rgba(0,200,255,0.45)" stroke-width="1.6"/>
-              <circle cx="190" cy="212" r="5" fill="rgba(0,200,255,0.8)"/>
-              <circle cx="290" cy="191" r="5" fill="rgba(0,200,255,0.6)"/>
-              <!-- right top wire (to Recuperação) -->
-              <path d="M 610 125 C 680 125 700 78 770 78"
-                    stroke="rgba(0,220,255,0.85)" stroke-width="1.7" fill="none" marker-end="url(#ar)"/>
-              <circle cx="678" cy="104" r="5" fill="rgba(0,220,255,0.85)"/>
-              <!-- right bot wire (to Receita) -->
-              <path d="M 610 175 C 680 175 700 222 770 222"
-                    stroke="rgba(0,220,255,0.85)" stroke-width="1.7" fill="none" marker-end="url(#ar)"/>
-              <circle cx="678" cy="196" r="5" fill="rgba(0,220,255,0.85)"/>
+              <!-- Hub to top-right satellite -->
+              <line x1="210" y1="210" x2="330" y2="130" stroke="url(#lineGrad)" stroke-width="1.5" stroke-dasharray="5,4"/>
+              <!-- Hub to bottom-right satellite -->
+              <line x1="210" y1="210" x2="330" y2="295" stroke="url(#lineGrad)" stroke-width="1.5" stroke-dasharray="5,4"/>
             </svg>
 
-            <!-- col 1: input icons -->
-            <div class="ai-col-left">
-              <div class="ai-inode">
-                <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-                  <ellipse cx="14" cy="7" rx="9" ry="3.5"/>
-                  <path d="M5 7v5c0 1.93 4.48 3.5 9 3.5S23 13.93 23 12V7"/>
-                </svg>
-              </div>
-              <div class="ai-inode">
-                <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-                  <ellipse cx="14" cy="6" rx="9" ry="3"/>
-                  <path d="M5 6v4c0 1.66 4.03 3 9 3s9-1.34 9-3V6"/>
-                  <ellipse cx="14" cy="17" rx="9" ry="3"/>
-                  <path d="M5 17v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
-                </svg>
-              </div>
-              <div class="ai-inode">
-                <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-                  <path d="M17 3H7a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9z"/>
-                  <polyline points="17 3 17 9 23 9"/>
-                  <line x1="9" y1="15" x2="19" y2="15"/>
-                  <polyline points="9 19 12 21 9 23"/>
-                </svg>
+            <!-- Center hub -->
+            <div class="ai-hub">
+              <span class="ai-hub-icon">🧠</span>
+              <span class="ai-hub-label">Winbakk AI</span>
+            </div>
+
+            <!-- Satellite cards -->
+            <div class="ai-satellite glass-card sat-top">
+              <div class="sat-icon">🔄</div>
+              <div class="sat-text">
+                <span class="sat-title">Recuperação</span>
+                <span class="sat-sub">Automática</span>
               </div>
             </div>
 
-            <!-- col 2: pedestal -->
-            <div class="ai-col-center">
-              <div class="ai-pedestal">
-                <div class="ai-sphere">
-                  <svg class="brain-svg" viewBox="0 0 64 64" fill="none" stroke="currentColor"
-                       stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="32" cy="32" r="22" stroke="rgba(255,255,255,0.2)" stroke-dasharray="2 3"/>
-                    <path d="M20 28c0-6.6 5.4-12 12-12s12 5.4 12 12c2.5 1 4 3.5 4 6 0 4-3.1 7-7 7H23c-3.9 0-7-3-7-7 0-2.5 1.5-5 4-6z"/>
-                    <line x1="32" y1="16" x2="32" y2="40"/>
-                    <line x1="20" y1="28" x2="44" y2="28"/>
-                    <line x1="20" y1="35" x2="44" y2="35"/>
-                    <line x1="26" y1="41" x2="26" y2="48"/>
-                    <line x1="38" y1="41" x2="38" y2="48"/>
-                    <line x1="26" y1="48" x2="38" y2="48"/>
-                  </svg>
-                </div>
-                <div class="ped-neck"></div>
-                <div class="ped-disc"></div>
-                <div class="ped-glow"></div>
-              </div>
-              <div class="ai-badge">Winbakk AI</div>
-            </div>
-
-            <!-- col 3: output nodes -->
-            <div class="ai-col-right">
-              <div class="ai-onode">
-                <div class="out-ico">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
-                       stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="3"/>
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                  </svg>
-                </div>
-                <span>Recuperação</span>
-              </div>
-              <div class="ai-onode">
-                <div class="out-ico">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
-                       stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M12 6v2m0 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zm0 5v3"/>
-                  </svg>
-                </div>
-                <span>Receita Recorrente</span>
+            <div class="ai-satellite glass-card sat-bottom">
+              <div class="sat-icon">💹</div>
+              <div class="sat-text">
+                <span class="sat-title">Receita Recorrente</span>
+                <span class="sat-sub">Maximizada</span>
               </div>
             </div>
-
           </div>
         </div>
-      </section>
 
-      <!-- ═══════════ RESULTADOS ═══════════ -->
-      <section id="casos" class="section">
-        <div class="container">
-          <h2 class="section-title">Resultados em Destaque</h2>
-          <div class="highlight-grid">
-            <article class="highlight-card">
-              <div class="hicon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-              </div>
-              <div><p class="hval">R$ 500k+</p><p class="hlabel">Receita recuperada no último trimestre para clientes B2B SaaS.</p></div>
-            </article>
-            <article class="highlight-card">
-              <div class="hicon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              </div>
-              <div><p class="hval">85%+</p><p class="hlabel">Taxa de engajamento média em campanhas de reativação.</p></div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- ═══════════ TIME ═══════════ -->
-      <section id="sobre" class="section">
-        <div class="container">
-          <h2 class="section-title">Nossa Equipe de Especialistas</h2>
-          <div class="team-grid">
-            <article class="team-card">
-              <img class="avatar-photo" src="./assets/images/bruno-oliveira.jpg" alt="Bruno Oliveira" />
-              <div class="team-info">
-                <h3>Bruno Oliveira</h3>
-                <p class="team-role">CEO</p>
-                <p class="team-bio">Lidera estratégia de produto e crescimento com foco em retenção e receita recorrente para PMEs.</p>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="team-social" aria-label="LinkedIn Bruno">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-                </a>
-              </div>
-            </article>
-            <article class="team-card">
-              <img class="avatar-photo" src="./assets/images/mat-moura.jpg" alt="Mat Moura" />
-              <div class="team-info">
-                <h3>Mat Moura</h3>
-                <p class="team-role">CTO &amp; Co-Fundador</p>
-                <p class="team-bio">Responsável pela arquitetura de IA que automatiza segmentação, timing e personalização.</p>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="team-social" aria-label="LinkedIn Mat">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-                </a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- ═══════════ FOOTER ═══════════ -->
-    <footer id="recursos" class="site-footer">
-      <div class="container footer-inner">
-        <a class="brand" href="#inicio">
-          <span class="brand-mark" aria-hidden="true">W</span>Winbakk
-        </a>
-        <nav class="footer-links">
-          <a href="#">Privacidade</a>
-          <a href="#">Termos</a>
-          <a href="#">Blog</a>
-        </nav>
-        <p class="footer-copy">contact@winbakk.com &nbsp;·&nbsp; © <span id="year"></span> Winbakk</p>
       </div>
-    </footer>
+    </div>
+  </section>
 
-    <script src="./script.js"></script>
-  </body>
+  <!-- ══════════ PROCESS ══════════ -->
+  <section class="process" id="process">
+    <div class="container">
+      <span class="section-tag">Simples e eficaz</span>
+      <h2 class="section-title">Como funciona em 3 passos</h2>
+      <p class="section-sub">Do setup à receita recuperada em menos de 20 minutos. Sem complexidade técnica.</p>
+
+      <div class="process-grid">
+
+        <div class="process-card glass-card reveal">
+          <div class="step-badge">1</div>
+          <span class="process-icon">📤</span>
+          <h3>Conecte sua Base de Dados</h3>
+          <p>Integre facilmente com seu CRM ou banco de dados para identificar clientes inativos com precisão.</p>
+          <span class="micro-tag">API Segura</span>
+        </div>
+
+        <div class="process-card glass-card reveal reveal-delay-1">
+          <div class="step-badge">2</div>
+          <span class="process-icon">🤖</span>
+          <h3>Ativação Inteligente</h3>
+          <p>Nossa IA personaliza e envia mensagens automatizadas nos canais preferidos de cada cliente.</p>
+          <span class="micro-tag">Multicanal</span>
+        </div>
+
+        <div class="process-card glass-card reveal reveal-delay-2">
+          <div class="step-badge">3</div>
+          <span class="process-icon">📈</span>
+          <h3>Acompanhe a Conversão</h3>
+          <p>Monitore os resultados em tempo real e veja sua receita recorrente crescer a cada campanha.</p>
+          <span class="micro-tag">Dashboard Ao Vivo</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ RESULTS ══════════ -->
+  <section class="results" id="results">
+    <div class="container">
+      <span class="section-tag">Números reais</span>
+      <h2 class="section-title">Resultados em Destaque</h2>
+      <p class="section-sub">Clientes B2B SaaS que usam a Winbakk já transformaram inativos em receita mensurável.</p>
+
+      <div class="results-grid">
+
+        <div class="result-card glass-card reveal">
+          <div class="result-icon-wrap">📈</div>
+          <div class="result-value">R$ 500k+</div>
+          <p class="result-label">Receita recuperada no último trimestre para clientes B2B SaaS.</p>
+          <div class="mini-chart">
+            <div class="bar" style="height:35%"></div>
+            <div class="bar" style="height:45%"></div>
+            <div class="bar" style="height:40%"></div>
+            <div class="bar" style="height:55%"></div>
+            <div class="bar" style="height:65%"></div>
+            <div class="bar" style="height:70%"></div>
+            <div class="bar" style="height:85%"></div>
+            <div class="bar" style="height:100%"></div>
+          </div>
+        </div>
+
+        <div class="result-card glass-card reveal reveal-delay-1">
+          <div class="result-icon-wrap" style="background:rgba(77,235,193,0.08);border-color:rgba(77,235,193,0.2);">💬</div>
+          <div class="result-value">85%+</div>
+          <p class="result-label">Taxa de engajamento média em campanhas de reativação.</p>
+          <div class="mini-chart">
+            <div class="bar" style="height:50%"></div>
+            <div class="bar" style="height:60%"></div>
+            <div class="bar" style="height:55%"></div>
+            <div class="bar" style="height:70%"></div>
+            <div class="bar" style="height:75%"></div>
+            <div class="bar" style="height:80%"></div>
+            <div class="bar" style="height:90%"></div>
+            <div class="bar" style="height:100%"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ TEAM ══════════ -->
+  <section class="team" id="team">
+    <div class="container">
+      <span class="section-tag">Quem está por trás</span>
+      <h2 class="section-title">Nossa Equipe de Especialistas</h2>
+      <p class="section-sub">Profissionais com experiência em Growth, IA e Vendas B2B comprometidos com seus resultados.</p>
+
+      <div class="team-grid">
+
+        <div class="team-card glass-card reveal">
+          <div class="avatar">👩</div>
+          <div class="team-name">Ana Oliveira</div>
+          <div class="team-role">CEO & Co-fundadora<br>Especialista em Growth e IA</div>
+          <a href="#" class="linkedin-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+
+        <div class="team-card glass-card reveal reveal-delay-1">
+          <div class="avatar">👨‍💻</div>
+          <div class="team-name">Carlos Santos</div>
+          <div class="team-role">CTO & Co-fundador<br>Arquiteto de Sistemas e Dados</div>
+          <a href="#" class="linkedin-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+
+        <div class="team-card glass-card reveal reveal-delay-2">
+          <div class="avatar">👩‍🎨</div>
+          <div class="team-name">Mariana Silva</div>
+          <div class="team-role">Head de Produto<br>Focada na experiência do usuário e conversão</div>
+          <a href="#" class="linkedin-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+
+        <div class="team-card glass-card reveal reveal-delay-3">
+          <div class="avatar">👨‍💼</div>
+          <div class="team-name">Pedro Costa</div>
+          <div class="team-role">Diretor de Vendas<br>Ajuda empresas a escalar com eficiência</div>
+          <a href="#" class="linkedin-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-inner">
+
+        <!-- Logo -->
+        <a href="#" class="nav-logo" style="text-decoration:none;">
+          <div class="logo-icon">W</div>
+          <span class="logo-text">Win<span>bakk</span></span>
+        </a>
+
+        <!-- Links -->
+        <ul class="footer-links">
+          <li><a href="#">Privacidade</a></li>
+          <li><a href="#">Termos</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Suporte</a></li>
+        </ul>
+
+        <!-- Right -->
+        <div class="footer-right">
+          <div class="social-icons">
+            <!-- Facebook -->
+            <a href="#" class="social-icon" title="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <!-- X/Twitter -->
+            <a href="#" class="social-icon" title="X (Twitter)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="#" class="social-icon" title="LinkedIn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+          </div>
+          <span class="footer-contact">
+            <a href="mailto:contact@winbakk.com">contact@winbakk.com</a>
+          </span>
+          <span class="footer-copy">© Winbakk, 2025 – 2026</span>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════ SCROLL REVEAL JS ══════════ -->
+  <script>
+    const revealEls = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealEls.forEach(el => observer.observe(el));
+  </script>
+
+</body>
 </html>
